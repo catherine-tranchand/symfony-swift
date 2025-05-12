@@ -5,5 +5,27 @@
 {% block body %}
     <div class="container my-5">
     <h1>Connexion</h1>
+
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    <form action="{{ path('app_login') }}" method="post">
+        <label for="username">Votre email:</label>
+        <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required>
+
+        <label for="password mt-3">Votre mot de passe:</label>
+        <input class="form-control" type="password" id="password" name="_password" required>
+
+        <input type="hidden" name="_target_path" value="{{ path('app_account') }}"> 
+
+        <button class="btn btn-success mt-3" type="submit">Me connecter</button>
+    </form>
+
+    <br>
+    <p>Pas encore de compte? <a href="{{ path('app_register') }}">Inscrivez-vous</a></p>
+
+   
     </div>
 {% endblock %}
+   

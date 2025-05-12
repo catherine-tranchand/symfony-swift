@@ -19,4 +19,13 @@ final class LoginController extends AbstractController
             'last_username' => $lastUsername,
         ]);
     }
+
+    #[Route('/logout', name: 'app_logout', methods: ['GET'])]
+    public function logout(): never
+    {
+        // Symfony gère la déconnexion automatiquement
+        // Vous pouvez rediriger l'utilisateur vers une autre page si nécessaire
+       throw new \Exception('Logout');
+    }
+    
 }
