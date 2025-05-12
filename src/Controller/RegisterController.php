@@ -21,9 +21,15 @@ final class RegisterController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-          
-           $entityManager->persist($user ); // 
-           $entityManager->flush();
+        
+            // $user = $form->getData();
+            // $user->setPassword(
+            //     password_hash($user->getPassword(), PASSWORD_BCRYPT)
+            // );
+            // $user->setRoles(['ROLE_USER']);
+            // $user->setCreatedAt(new \DateTimeImmutable());
+           $entityManager->persist($user ); // pour figer les données 
+           $entityManager->flush(); // pour envoyer les données en BDD
 
             // $user = $form->getData();
             // $entityManager = $this->getDoctrine()->getManager();
