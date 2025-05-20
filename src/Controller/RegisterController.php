@@ -16,27 +16,18 @@ final class RegisterController extends AbstractController
 
     public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $user = new User(); 
-        $form = $this->createForm(RegisterUserType::class, $user);
-        $form->handleRequest($request);
+        $user = new User();  // Instanciation de l'objet User
+        $form = $this->createForm(RegisterUserType::class, $user); // Création du formulaire
+        $form->handleRequest($request); // Récupération des données du formulaire
 
         if ($form->isSubmitted() && $form->isValid()) {
-        
-            // $user = $form->getData();
-            // $user->setPassword(
-            //     password_hash($user->getPassword(), PASSWORD_BCRYPT)
-            // );
-            // $user->setRoles(['ROLE_USER']);
-            // $user->setCreatedAt(new \DateTimeImmutable());
+      
            $entityManager->persist($user ); // pour figer les données 
            $entityManager->flush(); // pour envoyer les données en BDD
+             
+           $this->addFlash('success', 'Votre compte a été créé avec succès !'); //NOTIFICATION 
+              return $this->redirectToRoute('app_login'); // Redirection vers la page de login
 
-            // $user = $form->getData();
-            // $entityManager = $this->getDoctrine()->getManager();
-            // $entityManager->persist($user);
-            // $entityManager->flush();
-
-            // return $this->redirectToRoute('app_home');
         }
         
         return $this->render('register/index.html.twig', [
