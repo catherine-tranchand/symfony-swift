@@ -29,15 +29,12 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">Home</a>
                     </li>
+                    {% for category in allCategories %} {# pour boucler sur l'ensemble de mes categories qui sont renvoyées par la variable "allCategories" #}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" href="{{ path('app_category', { slug : category.slug }) }}">{{ category.name }}</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
+                    {% endfor %}
+                 
                 </ul>
                 <div class="speed-menu">
                     {% if app.user %}
@@ -45,7 +42,7 @@
                     {% else %} 
                      <a href="{{ path('app_login') }}"><i data-feather="user"></i></a>
                     {% endif %}
-                     <a href=""><i data-feather="shopping-cart"></i></a>
+                     <a href="{{ path('app_cart') }}"><i data-feather="shopping-cart"></i></a>
                 </div>
             </div>
         </div>
