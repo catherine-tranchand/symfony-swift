@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>e-shop</title>
+    <title>monTrésor</title>
     <meta name="description" content="La boutique spécialisée dans la fabrication Made In France">
 
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
@@ -20,7 +20,7 @@
 <header data-bs-theme="dark">
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{ path('app_home')}}">e-shop</a>
+            <a class="navbar-brand" href="{{ path('app_home')}}">monTrésor</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -42,7 +42,9 @@
                     {% else %} 
                      <a href="{{ path('app_login') }}"><i data-feather="user"></i></a>
                     {% endif %}
+
                      <a href="{{ path('app_cart') }}"><i data-feather="shopping-cart"></i></a>
+                     <span class="badge badge-notification rounded-pill text-bg-light">{{ totalCartQuantity }} </span>
                 </div>
             </div>
         </div>
