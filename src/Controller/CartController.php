@@ -14,10 +14,10 @@ use Symfony\Component\HttpFoundation\RequestStack; // Add this at the top
 final class CartController extends AbstractController
 {
     #[Route('/cart', name: 'app_cart')]
-    public function index(Cart $cart) //RequestStack $requestStack): Response
+    public function index(Cart $cart) //RequestStack $requestStack) //RequestStack $requestStack): Response
     
     {
-        //$requestStack->getSession()->remove('cart');
+       // $requestStack->getSession()->remove('cart');
 
         return $this->render('cart/index.html.twig', [
             'cart' => $cart->getCart(),

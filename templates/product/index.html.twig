@@ -19,7 +19,9 @@
           <h1>{{ product.name }} </h1>
            <span class="d-block mb-3">{{ product.pricewt|price}} </span>
           {{ product.description|raw }} {# raw filtre -> pour enlever des balises HTML dans le text #}
-          <a href="{{ path('app_cart_add', { id : product.id, origin: app.request.uri } ) }}" class="btn btn-dark mt-3  w-100">Ajouter au panier</a>
+
+          <a href="{{ path('app_cart_add', { id : product.id, origin: app.request.uri } ) }}"
+             class="btn btn-dark mt-3  w-100">Ajouter au panier</a>
          </div>
 
 

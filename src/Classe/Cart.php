@@ -79,7 +79,7 @@ class Cart
 
 public function totalQuantity()
 {
-    $cart = $this->requestStack->getSession()->get('cart');
+    $cart = $this->requestStack->getSession()->get('cart', []);
     $quantity = 0;
 
     foreach ($cart as $product){
@@ -98,6 +98,7 @@ public function totalQuantity()
 public function getTotalWt()
 {
     $cart = $this->requestStack->getSession()->get('cart');
+    $cart = is_array($cart) ? $cart : []; // Fallback to an empty array if $cart is null
     $price= 0;
 
     foreach ($cart as $product){

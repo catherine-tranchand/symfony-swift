@@ -30,15 +30,11 @@ class UserCrudController extends AbstractCrudController
 
      public function configureFields(string $pageName): iterable //les champs visibles sur la vue de modification et sur la vue de listing
     {
-
-        
-       return [
+        return [
             TextField::new('firstName')->setLabel('Prénom'),
             TextField::new('lastName')->setLabel('Nom'),
             TextField::new('email')->setLabel('Email')->onlyOnIndex(), // Affiche l'email uniquement sur la liste 
-                
-    
-        ];
+            ];
      }
 }
 
