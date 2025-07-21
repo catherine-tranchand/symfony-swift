@@ -1,27 +1,29 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Account;
 
-use App\Form\PasswordUserType;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Form\PasswordUserType;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Routing\Attribute\Route;
-use Doctrine\ORM\EntityManagerInterface;
 
-final class AccountController extends AbstractController
+
+final class PasswordController extends AbstractController
 {
-    #[Route('/account', name: 'app_account')]
-    public function index(): Response
+    private $entityManager;  
+
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        return $this->render('account/index.html.twig', [
-            'controller_name' => 'AccountController',
-        ]);
+        $this->entityManager = $entityManager;
     }
-    #[Route('/account/modifier-mot-de-passe', name: 'app_account_modify_pwd')]
-    public function password(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager ): Response
-    { 
+
+    #[Route('/compte/modifier-mot-de-passe', name: 'app_account_modify_pwd')]
+    public function index(Request $request, UserPasswordHasherInterface $passwordHasher): Response
+    {  
         
         
         $user = $this->getUser(); // Get the current user
@@ -35,12 +37,12 @@ final class AccountController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
 
             $this->addFlash('success', 'Votre mot de passe a été modifié avec succès !'); //NOTIFICATION
-            $entityManager->flush();
+            $this->entityManager->flush();
            
       
 
         }
-        return $this->render('account/password.html.twig', [
+        return $this->render('account/password/index.html.twig', [
            'modifyPwd' => $form->createView(),  
         ]);
     }
