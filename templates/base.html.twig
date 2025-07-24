@@ -20,8 +20,9 @@
 </head>
 <body>
 
-<header data-bs-theme="dark">
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<header data-bs-theme="light">
+    <nav class="navbar navbar-expand-md fixed-top navbar-light-custom">
+
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ path('app_home')}}">monTrésor</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,8 +47,8 @@
                      <a href="{{ path('app_login') }}"><i data-feather="user"></i></a>
                     {% endif %}
 
-                     <a href="{{ path('app_cart') }}"><i data-feather="shopping-cart"></i></a>
-                     <span class="badge badge-notification rounded-pill text-bg-light">{{ totalCartQuantity }} </span>
+                     <a href="{{ path('app_cart') }}" class=""><i data-feather="shopping-cart"></i></a>
+                     <span class="badge badge-notification rounded-pill text-bg-dark">{{ totalCartQuantity }} </span>
                 </div>
             </div>
         </div>
